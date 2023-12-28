@@ -20,13 +20,9 @@ export default function Signup(props) {
 
 
   return (
-    <div className='form-signup'>
+    <div className='form-signup col-4 mx-auto mt-3 text-center'>
       <h1>Sign Up</h1>
       <form onSubmit={registerHandler}>
-        
-      
-        
-        
         <div >
           <label >First Name</label>
           <input type='text' name='firstName' onChange={handleChange} className='form-control'></input>
@@ -76,6 +72,5 @@ export default function Signup(props) {
         
       </form>
     </div>
-    
   )
 }
