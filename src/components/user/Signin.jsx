@@ -20,7 +20,7 @@ export default function Signin(props) {
 
 
   return (
-    <div className='form-signup'>
+    <div className='form-signup col-4 mx-auto mt-3 text-center'>
       <h1>Sign In</h1>
       <form onSubmit={loginHandler}>
   
@@ -39,6 +39,5 @@ export default function Signin(props) {
         </div>
       </form>
     </div>
-    
   )
 }
