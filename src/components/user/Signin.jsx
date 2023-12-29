@@ -18,7 +18,6 @@ export default function Signin(props) {
     e.target.reset();
   }
 
-
   return (
     <div className='form-signup col-4 mx-auto mt-3 text-center'>
       <h1>Sign In</h1>

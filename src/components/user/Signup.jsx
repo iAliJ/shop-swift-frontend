@@ -20,7 +20,7 @@ export default function Signup(props) {
     <div className='form-signup col-4 mx-auto mt-3 text-center'>
       <h1>Sign Up</h1>
       <form onSubmit={registerHandler}>
-        <div >
+        <div>
           <label >First Name</label>
           <input type='text' name='firstName' onChange={handleChange} className='form-control'></input>
         </div>
@@ -30,10 +30,10 @@ export default function Signup(props) {
           <input type='text' name='lastName' onChange={handleChange} className='form-control'></input>
         </div>
 
-        <label>
-          Phone Number
+        <div>
+          <label for="phoneNumber">Phone Number</label>
           <input type="text" name="phoneNumber" onChange={handleChange} className='form-control'/>
-        </label>
+        </div>
 
         <div>
           <label>Email Address</label>
@@ -45,23 +45,19 @@ export default function Signup(props) {
           <input type='password' name='password' onChange={handleChange} className='form-control'></input>
         </div>
 
-          <div>
-        <label>
-          User Role
+        <div>
+          <label>User Role</label>
           <select name="userRole"  onChange={handleChange} className='form-control'>
             <option value="">Select Role</option>
             <option value="Buyer">Buyer</option>
             <option value="Seller">Seller</option>
           </select>
-          </label>
-          </div>
+        </div>
 
-          <div>
+        <div>
             {/* I dont think this is needed */}
-        <label>
-          Company Name
+          <label>Company Name</label>
           <input type="text" name="companyName"  onChange={handleChange} className='form-control' />
-        </label>
         </div>
 
         <div>
