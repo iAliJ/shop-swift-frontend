@@ -1,6 +1,6 @@
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
-import {Routes, Route, Link } from "react-router-dom"
+import { Routes, Route, Link, useNavigate } from "react-router-dom"
 import  Axios  from 'axios';
 import {jwtDecode} from "jwt-decode"
 
@@ -15,6 +15,22 @@ import Profile from './Pages/dashboard/Profile';
 import OrdersPage from './Pages/dashboard/OrdersPage';
 
 function App() {
+
+  const navigate = useNavigate();
+  /**
+   * A function that calls API to register a user in the database
+   * @param {The use to be registered} user 
+   */
+  const registerHandler = (user) => {
+    Axios.post('/auth/signup', user)
+    .then(res => {
+      // When sucsessfull redirect to dashboard page
+      navigate('/');
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  }
   return (
     <>
     <div className='bg-dark text-light'>
@@ -22,7 +38,7 @@ function App() {
         <NavBar></NavBar>
         <Routes>
           <Route path="/" element={<Home/>}/>
-          <Route path="/signup" element={<Signup/>}/>
+          <Route path="/signup" element={<Signup register={registerHandler}/>}/>
           <Route path="/signin" element={<Signin/>}/>
           <Route path="/dashboard" element={<Dashboard />}>
             <Route path="profile" element={<Profile />} />
