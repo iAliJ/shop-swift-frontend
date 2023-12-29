@@ -2,22 +2,19 @@ import React, { useState } from 'react'
 
 export default function Signup(props) {
 
+  // TODO... handle changes from user role selected item
   const [newUser, setNewUser] = useState({})
 
   const handleChange = (e) => {
-
     const user = {...newUser};
     user[e.target.name] = e.target.value;
-    console.log(user)
-    setNewUser(user)
+    setNewUser(user);
   }
 
   const registerHandler = (e) => {
-    e.preventDefault()
-    props.register(newUser)
-    e.target.reset();
+    e.preventDefault();
+    props.register(newUser);
   }
-
 
   return (
     <div className='form-signup col-4 mx-auto mt-3 text-center'>
@@ -60,6 +57,7 @@ export default function Signup(props) {
           </div>
 
           <div>
+            {/* I dont think this is needed */}
         <label>
           Company Name
           <input type="text" name="companyName"  onChange={handleChange} className='form-control' />
