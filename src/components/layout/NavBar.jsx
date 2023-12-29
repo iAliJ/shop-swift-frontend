@@ -1,5 +1,5 @@
 import React from 'react'
-import {Routes, Route, Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 export default function MainNav() {
     return (
@@ -7,15 +7,14 @@ export default function MainNav() {
             <div className="container">
                 <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                     <a href="/" className="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                    {/* <svg className="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg> */}
                     </a>
 
                     <ul className="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                     <li><Link to="/" className="nav-link px-2 text-secondary">Home</Link></li>
-                    <li><Link to="stores" className="nav-link px-2 text-white">Stores</Link></li>
-                    <li><Link to="products" className="nav-link px-2 text-white">Products</Link></li>
-                    <li><Link to="faq" className="nav-link px-2 text-white">FAQs</Link></li>
-                    <li><Link to="about" className="nav-link px-2 text-white">About</Link></li>
+                    <li><Link to="/stores" className="nav-link px-2 text-white">Stores</Link></li>
+                    <li><Link to="/products" className="nav-link px-2 text-white">Products</Link></li>
+                    <li><Link to="/faq" className="nav-link px-2 text-white">FAQs</Link></li>
+                    <li><Link to="/dashboard" className="nav-link px-2 text-white">Dashboard</Link></li>
                     </ul>
 
                     <form className="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
