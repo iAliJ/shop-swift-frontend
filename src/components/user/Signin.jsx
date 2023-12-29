@@ -5,10 +5,8 @@ export default function Signin(props) {
   const [newUser, setNewUser] = useState({})
 
   const handleChange = (e) => {
-
     const user = {...newUser};
     user[e.target.name] = e.target.value;
-    console.log(user)
     setNewUser(user)
   }
 

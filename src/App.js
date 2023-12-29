@@ -1,6 +1,6 @@
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import  Axios  from 'axios';
 import {jwtDecode} from "jwt-decode"
@@ -17,8 +17,34 @@ import OrdersPage from './Pages/dashboard/OrdersPage';
 
 function App() {
   const navigate = useNavigate();
+  // Instead of IsAuth use IsLoggedin
   const [isAuth, setIsAuth] = useState(false);
+  // Change this to userId it makes more sense
   const [user, setUser] = useState({});
+  const [userData, setUserData] = useState({});
+
+  function getHeaders() {
+    const headers = {
+      headers: {
+          "Authorization": "Bearer " + localStorage.getItem('token')
+      }
+  }
+  return headers;
+}
+
+  useEffect(() => {
+    const user = getUser();
+    console.log(user)
+    if(user){
+      setIsAuth(true);
+      setUser(user);
+    }
+    else{
+      localStorage.removeItem('token');
+      setIsAuth(false);
+      setUser(null);
+    }
+  }, []);
 
   /**
    * A function that calls API to register a user in the database
@@ -48,6 +74,7 @@ function App() {
         const user = getUser();
         user ? setIsAuth(true) : setIsAuth(false);
         user ? setUser(user) : setUser(user);
+        getUserData(user.id);
         navigate('/dashboard');
       }
     })
@@ -56,6 +83,21 @@ function App() {
       console.log(err);
       setIsAuth(false);
       setUser(null);
+    })
+  }
+
+  /**
+   * sets userdata state by fetching the data from the backend
+   * @param {userId} userId 
+   */
+  const getUserData = (userId) => {
+    const header = getHeaders();
+    Axios.get(`/user/detail?id=${userId}`, getHeaders())
+    .then(res => {
+      setUserData(res.data.user);
+    })
+    .catch(err => {
+      console.log(err);
     })
   }
 
@@ -79,8 +121,8 @@ function App() {
           <Route path="/" element={<Home/>}/>
           <Route path="/signup" element={<Signup register={registerHandler}/>}/>
           <Route path="/signin" element={<Signin login={loginHandler}/>}/>
-          <Route path="/dashboard" element={<Dashboard />}>
-            <Route path="profile" element={<Profile />} />
+          <Route path="/dashboard" element={isAuth? <Dashboard userData={userData}/> : <Signin login={loginHandler}/>}>
+            <Route path="profile" element={<Profile userData={userData}/>} />
             <Route path="orders" element={<OrdersPage />} />
           </Route>
           <Route path="*" element={<Error/>}/>
