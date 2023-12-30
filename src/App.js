@@ -14,6 +14,7 @@ import Dashboard from './Pages/dashboard/Dashboard';
 import Error from './Pages/Error';
 import Profile from './Pages/dashboard/Profile';
 import OrdersPage from './Pages/dashboard/OrdersPage';
+import Logout from './components/user/Logout';
 
 function App() {
   const navigate = useNavigate();
@@ -34,10 +35,10 @@ function App() {
 
   useEffect(() => {
     const user = getUser();
-    console.log(user)
     if(user){
       setIsAuth(true);
       setUser(user);
+      getUserData(user.id);
     }
     else{
       localStorage.removeItem('token');
@@ -53,52 +54,60 @@ function App() {
   const registerHandler = (user) => {
     Axios.post('/auth/signup', user)
     .then(res => {
-      // When sucsessfull redirect to dashboard page
-      navigate('/dashboard');
+      // if sucsessfull then login
+      loginHandler({emailAddress: user.emailAddress, password: user.password})
     })
     .catch(err => {
       console.log(err);
     });
   }
 
+  const logoutHandler = (e) => {
+    // e.preventDefault();
+    localStorage.removeItem("token");
+    setIsAuth(false);
+    setUser(null);
+    navigate('/');
+  }
+
   /**
    * A function to handle user login by calling the login API and set authentication token
    * @param {user credentials in JSON format} cred 
    */
-  const loginHandler = (cred) => {
-    Axios.post('/auth/signin', cred)
-    .then(res => {
+  const loginHandler = async (cred) => {
+    try{
+      const res = await Axios.post('/auth/signin', cred);
       let token = res.data.token;
       if(token != null){
         localStorage.setItem('token', token);
         const user = getUser();
         user ? setIsAuth(true) : setIsAuth(false);
         user ? setUser(user) : setUser(user);
-        getUserData(user.id);
-        navigate('/dashboard');
+        await getUserData(user.id);
+        navigate('/dashboard/profile');
       }
-    })
-    .catch(err => {
+  }
+    catch(err) {
       console.log("Error signing in");
       console.log(err);
       setIsAuth(false);
       setUser(null);
-    })
+    }
   }
 
   /**
    * sets userdata state by fetching the data from the backend
    * @param {userId} userId 
    */
-  const getUserData = (userId) => {
-    const header = getHeaders();
-    Axios.get(`/user/detail?id=${userId}`, getHeaders())
-    .then(res => {
+  const getUserData = async (userId) => {
+    try{
+      const header = getHeaders();
+      const res = await Axios.get(`/user/detail?id=${userId}`, getHeaders());
       setUserData(res.data.user);
-    })
-    .catch(err => {
+    }
+    catch(err){
       console.log(err);
-    })
+    }
   }
 
   // TODO... Move these into helper modules
@@ -121,9 +130,12 @@ function App() {
           <Route path="/" element={<Home/>}/>
           <Route path="/signup" element={<Signup register={registerHandler}/>}/>
           <Route path="/signin" element={<Signin login={loginHandler}/>}/>
-          <Route path="/dashboard" element={isAuth? <Dashboard userData={userData}/> : <Signin login={loginHandler}/>}>
+          
+          {/* TODO... need to send userData to the parent element only */}
+          <Route path="/dashboard" element={isAuth? <Dashboard/> : <Signin login={loginHandler}/>}>
             <Route path="profile" element={<Profile userData={userData}/>} />
             <Route path="orders" element={<OrdersPage />} />
+            <Route path='logout' element={<Logout logout={logoutHandler}/>}/>
           </Route>
           <Route path="*" element={<Error/>}/>
         </Routes>

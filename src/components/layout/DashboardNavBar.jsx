@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-export default function () {
+export default function (props) {
   return (
     <div>
         <div class="vh-100 d-flex flex-column flex-shrink-0 p-3">
@@ -32,7 +32,6 @@ export default function () {
                     </Link>
                 </li>
             </ul>
-            <hr/>
             <div>
             </div>
         </div>

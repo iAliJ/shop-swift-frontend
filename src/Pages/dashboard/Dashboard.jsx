@@ -3,7 +3,7 @@ import DashboardNavBar from '../../components/layout/DashboardNavBar'
 import { Outlet } from 'react-router-dom';
 
 // This dashboard will show user profiles / orders / shops and products (if they are sellers)
-export default function Dashboard() {
+export default function Dashboard(props) {
   return (
     <div className='row mx-0'>
       <div className='col-md-3 col-lg-2 p-0'>
