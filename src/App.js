@@ -14,6 +14,7 @@ import Dashboard from './Pages/dashboard/Dashboard';
 import Error from './Pages/Error';
 import Profile from './Pages/dashboard/Profile';
 import OrdersPage from './Pages/dashboard/OrdersPage';
+import SellerStorePage from './Pages/dashboard/store/StoreIndex';
 import Logout from './components/user/Logout';
 
 function App() {
@@ -135,6 +136,7 @@ function App() {
           <Route path="/dashboard" element={isAuth? <Dashboard/> : <Signin login={loginHandler}/>}>
             <Route path="profile" element={<Profile userData={userData}/>} />
             <Route path="orders" element={<OrdersPage />} />
+            <Route path="stores" element={<SellerStorePage userData={userData}/>} />
             <Route path='logout' element={<Logout logout={logoutHandler}/>}/>
           </Route>
           <Route path="*" element={<Error/>}/>
