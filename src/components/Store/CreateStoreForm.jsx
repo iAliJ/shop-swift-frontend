@@ -35,7 +35,6 @@ export default function CreateStoreForm(props) {
         <div>
             <h2>Let's create your store!</h2>
             <form onSubmit={handleCreateStore}>
-                <h1>{props.userData._id}</h1>
                 <div>
                     <label className="form-label my-3" for="storeName">Store Name</label>
                     <input type="text" name="name" className="form-control" onChange={handleChange} placeholder="Enter store name"/>
