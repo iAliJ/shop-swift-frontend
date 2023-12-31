@@ -1,5 +1,6 @@
 import React from 'react'
 import ProductCard from './ProductCard';
+import AddProduct from './AddProduct';
 
 export default function ProductListings(props) {
     return (
@@ -19,6 +20,10 @@ export default function ProductListings(props) {
             <div>
                 <ProductCard/>
             </div>
+
+            {/* <div>
+               <AddProduct/> 
+            </div> */}
         </div>
     )
 }
