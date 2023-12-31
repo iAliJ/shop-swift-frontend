@@ -28,7 +28,7 @@ export default function StoreIndex(props) {
     <>
     {(props.userData.role === 'seller') ? <h1>Welcome to your store page</h1> : <Navigate to="/" replace={true} />}
     <div>
-      {(hasStore) ? <EditStoreForm/> : <CreateStoreForm setHasStore={setHasStore} userData={props.userData} headers={props.headers}/>}
+      {(hasStore) ? <EditStoreForm userData={props.userData} headers={props.headers}/> : <CreateStoreForm setHasStore={setHasStore} userData={props.userData} headers={props.headers}/>}
     </div>
     </>
   )
