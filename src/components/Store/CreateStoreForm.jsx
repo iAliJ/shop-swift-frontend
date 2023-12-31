@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
+import { useNavigate } from "react-router-dom";
 import Axios from 'axios';
 
 export default function CreateStoreForm(props) {
     const userId = props.userData._id;
     const [newStore, setNewStore] = useState({user: userId})
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const store = {...newStore};
@@ -19,7 +21,14 @@ export default function CreateStoreForm(props) {
     }
 
     function createStore(store) {
+        console.log(userId);
         Axios.post('/store/create', store, props.headers)
+        .then((store) => {
+            // navigate to /stores
+            console.log(store);
+            props.setHasStore(true);
+            navigate('/dashboard/stores');
+        })
     }
 
     return (
