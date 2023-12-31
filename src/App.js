@@ -138,7 +138,7 @@ function App() {
           <Route path="/dashboard" element={isAuth? <Dashboard/> : <Signin login={loginHandler}/>}>
             <Route path="profile" element={<Profile userData={userData}/>} />
             <Route path="orders" element={<OrdersPage />} />
-            <Route path="stores" element={<SellerStorePage userData={userData}/>} />
+            <Route path="stores" element={<SellerStorePage userData={userData} headers={getHeaders()}/>} />
             <Route path='logout' element={<Logout logout={logoutHandler}/>}/>
           </Route>
           <Route path="*" element={<Error/>}/>
