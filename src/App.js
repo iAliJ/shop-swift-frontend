@@ -18,6 +18,7 @@ import SellerStorePage from './Pages/dashboard/store/StoreIndex';
 import Logout from './components/user/Logout';
 import ProductsPage from './components/product/ProductListings';
 import StorePage from './components/Store/StoreListings';
+import StoreDetail from './components/Store/StoreDetail';
 
 function App() {
   const navigate = useNavigate();
@@ -135,9 +136,11 @@ function App() {
           <Route path="/signin" element={<Signin login={loginHandler}/>}/>
           <Route path="/products" element={<ProductsPage/>}/>
           <Route path="/stores" element={<StorePage/>}/>
+          <Route path="/stores/:id" element={<StoreDetail/>}/>
           
           {/* TODO... need to send userData to the parent element only */}
           <Route path="/dashboard" element={isAuth? <Dashboard/> : <Signin login={loginHandler}/>}>
+            <Route index element={<Profile userData={userData}/>} />
             <Route path="profile" element={<Profile userData={userData}/>} />
             <Route path="orders" element={<OrdersPage />} />
             <Route path="stores" element={<SellerStorePage userData={userData} headers={getHeaders()}/>} />

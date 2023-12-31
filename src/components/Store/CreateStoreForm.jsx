@@ -40,16 +40,16 @@ export default function CreateStoreForm(props) {
                     <input type="text" name="name" className="form-control" onChange={handleChange} placeholder="Enter store name"/>
                 </div>
                 <div>
+                    <label className="form-label my-3" for="storeDescription">Store Description</label>
+                    <textarea type="text" name="description" className="form-control" onChange={handleChange} placeholder="Enter store name"/>
+                </div>
+                <div>
                     <label className="form-label my-3" for="storeLogo">Store Logo</label>
                     <input type="text" name="logo" className="form-control" onChange={handleChange} placeholder="Replace this with file browser"/>
                 </div>
                 <div>
                     <label className="form-label my-3" for="storeAddress">Store Address</label>
                     <input type="text" name="address" className="form-control" onChange={handleChange} placeholder="Address"/>
-                </div>
-                <div>
-                    <label className="form-label my-3" for="storeCategory">Store Category</label>
-                    <input type="text" name="category" className="form-control" placeholder="Category"/>
                 </div>
                 <div>
                     <input className='btn btn-primary my-3' type="submit" value="Create Store"/>
