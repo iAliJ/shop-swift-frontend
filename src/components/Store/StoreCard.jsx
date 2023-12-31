@@ -8,7 +8,7 @@ export default function StoreCard(props) {
             <img src='...' className='card-img-top'/>
             <div class="card-body">
             <h5 class="card-title">{props.name}</h5>
-            <p class="card-text">Store description goes here in this paragraph tag.</p>
+            <p class="card-text">{props.description}</p>
             <Link to={`/stores/${props._id}`} class="btn btn-primary">Visit Store</Link>
         </div>
         </div>
