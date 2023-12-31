@@ -57,10 +57,6 @@ export default function EditStoreForm(props) {
                     <input type="text" name="address" className="form-control" onChange={handleChange} placeholder="Address" value={storeData.address}/>
                 </div>
                 <div>
-                    <label className="form-label my-3" for="storeCategory">Store Category</label>
-                    <input type="text" name="category" className="form-control" placeholder="Category" value={storeData.category}/>
-                </div>
-                <div>
                     <input className='btn btn-primary my-3' type="submit" value="Edit Store"/>
                 </div>
             </form>

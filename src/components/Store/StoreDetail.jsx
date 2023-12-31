@@ -1,6 +1,26 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+import Axios from 'axios';
 
-export default function ProductDetail(props) {
+export default function StoreDetail() {
+    const {id} = useParams();
+    const [store, setStore] = useState({});
+
+    useEffect(() => {
+        getStore(id);
+    }, [])
+
+    function getStore(storeId){
+        Axios.get(`/store/detail?id=${storeId}`)
+        .then(res => {
+            setStore(res.data.store);
+        })
+        .catch(err => {
+            console.log('error getting store data');
+            console.log(err);
+        })
+    }
+
     // A single product page. 
     // Props will recieve product object that contains all the details
     return (
@@ -28,8 +48,7 @@ export default function ProductDetail(props) {
                                         </div>
                                 </div>
                                 <div className="mt-4 mb-3">
-                                    <span className="text-uppercase text-muted brand">Orianz</span>
-                                    <h5 className="text-uppercase">Men's slim fit t-shirt</h5>
+                                    <h4 className="text-uppercase">{store.name}</h4>
                                     <div className="price d-flex flex-row align-items-center">  
                                         <span className="act-price">$20</span>
                                         <div className="ml-2">

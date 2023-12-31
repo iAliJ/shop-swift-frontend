@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 export default function StoreCard(props) {
     // TODO... add price, selling units, available units and quantity selector
@@ -8,7 +9,7 @@ export default function StoreCard(props) {
             <div class="card-body">
             <h5 class="card-title">{props.name}</h5>
             <p class="card-text">Store description goes here in this paragraph tag.</p>
-            <button href="#" class="btn btn-primary">Visit Store</button>
+            <Link to={`/stores/${props._id}`} class="btn btn-primary">Visit Store</Link>
         </div>
         </div>
     )
