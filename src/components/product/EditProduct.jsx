@@ -84,7 +84,7 @@ export default function EditProduct() {
             name="image"
             className="form-control"
             onChange={handleChange}
-            placeholder="Enter product image URL"
+            placeholder="Add product image"
             value={productData.image}
           />
         </div>
@@ -119,10 +119,7 @@ export default function EditProduct() {
             <input className='btn btn-primary my-3' type="submit" value="Edit Product"/>
                 </div>
                 </form>
-              
-
-
-
+            
     </div>
 
   )

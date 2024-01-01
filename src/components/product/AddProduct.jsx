@@ -83,7 +83,7 @@ export default function AddProduct(props) {
             name="image"
             className="form-control"
             onChange={handleChange}
-            placeholder="Enter product image URL"
+            placeholder="Add product image"
           />
         </div>
         <div>
