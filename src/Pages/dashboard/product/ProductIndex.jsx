@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 import Axios from 'axios';
-import AddProduct from '../../dashboard/product/AddProduct';
+import AddProduct from '../../../components/product/AddProduct';
+import EditProduct from '../../../components/product/EditProduct';
 
 export default function ProductIndex(props) {
   useEffect(() => {
