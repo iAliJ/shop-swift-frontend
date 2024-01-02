@@ -16,11 +16,13 @@ import Error from './Pages/Error';
 import Profile from './Pages/dashboard/Profile';
 import OrdersPage from './Pages/dashboard/OrdersPage';
 import SellerStorePage from './Pages/dashboard/store/StoreIndex';
+import SellerProductPage from './Pages/dashboard/product/ProductIndex';
 import Logout from './components/user/Logout';
 import ProductsPage from './components/product/ProductListings';
+import ProductDetail from './components/product/ProductDetail';
 import StorePage from './components/Store/StoreListings';
 import StoreDetail from './components/Store/StoreDetail';
-import ProductDetail from './components/product/ProductDetail';
+
 
 function App() {
   const navigate = useNavigate();
@@ -147,6 +149,7 @@ function App() {
             <Route path="profile" element={<Profile userData={userData}/>} />
             <Route path="orders" element={<OrdersPage />} />
             <Route path="stores" element={<SellerStorePage userData={userData} headers={getHeaders()}/>} />
+            <Route path="products" element={<SellerProductPage userData={userData} headers={getHeaders()}/>} />
             <Route path='logout' element={<Logout logout={logoutHandler}/>}/>
           </Route>
           <Route path="*" element={<Error/>}/>

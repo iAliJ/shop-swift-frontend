@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
+import Axios from 'axios';
 
 export default function Signup(props) {
 
@@ -49,8 +51,11 @@ export default function Signup(props) {
           <label>User Role</label>
           <select name="userRole"  onChange={handleChange} className='form-control'>
             <option value="">Select Role</option>
-            <option value="Buyer">Buyer</option>
-            <option value="Seller">Seller</option>
+
+            
+            
+            {/* <option value="Buyer">Buyer</option>
+            <option value="Seller">Seller</option> */}
           </select>
         </div>
 

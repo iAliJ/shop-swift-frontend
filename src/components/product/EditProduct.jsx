@@ -1,59 +1,62 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Axios from 'axios';
+import Axios from "axios";
 
-export default function AddProduct(props) {
+export default function EditProduct(props) {
   const userId = props.userData._id;
-  const [newProduct, setNewProduct] = useState({ user: userId });
+  const [productData, setProductData] = useState({ user: userId });
   const [categories, setCategories] = useState([]); // Added state for categories
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Fetch categories when the component mounts
+    getProductData(userId);
     fetchCategories();
   }, []);
 
   const fetchCategories = () => {
-    Axios.get('/category/all') // Replace with your actual endpoint to fetch categories
+    Axios.get("/category/all") // Replace with your actual endpoint to fetch categories
       .then((response) => {
+        console.log(response.data);
         setCategories(response.data.categories);
       })
       .catch((error) => {
-        console.error('Error fetching categories:', error);
+        console.error("Error fetching categories:", error);
       });
   };
 
-
   const handleChange = (e) => {
-    const product = { ...newProduct };
+    const product = { ...productData };
     product[e.target.name] = e.target.value;
-    setNewProduct(product);
+    setProductData(product);
   };
 
-  const handleAddProduct = (e) => {
+  const handleUpdateProduct = (e) => {
     e.preventDefault();
-    const product = { ...newProduct };
-    setNewProduct(product);
-    addProduct(newProduct);
+    const product = { ...productData };
+    setProductData(product);
+    updateProduct(productData);
   };
 
-  function addProduct(product) {
-    Axios.post('/product/create', product, props.headers)
-      .then((product) => {
-        // navigate to /dashboard/products
-        console.log(product);
-        props.setHasProduct(true);
-        navigate('/dashboard/products');
-      })
-      
+  function getProductData(userId) {
+    Axios.get(`/user/product?user=${userId}`).then((res) => {
+      setProductData(res.data.product);
+    });
+  }
+
+  function updateProduct(product) {
+    console.log(product);
+    Axios.post("/product/edit", product, props.headers).catch((err) => {
+      console.log("error updating product");
+      console.log(err);
+    });
   }
 
   return (
     <div>
-      <h2>Add a new product to your store</h2>
-      <form onSubmit={handleAddProduct}>
+      <h2>Modify Product!</h2>
+      <form onSubmit={handleUpdateProduct}>
         <div>
-          <label className="form-label my-3" htmlFor="productName">
+          <label className="form-label my-3" for="productName">
             Product Name
           </label>
           <input
@@ -62,8 +65,10 @@ export default function AddProduct(props) {
             className="form-control"
             onChange={handleChange}
             placeholder="Enter product name"
+            value={productData.name}
           />
         </div>
+
         <div>
           <label className="form-label my-3" htmlFor="productPrice">
             Product Price
@@ -74,31 +79,11 @@ export default function AddProduct(props) {
             className="form-control"
             onChange={handleChange}
             placeholder="Enter product price"
+            value={productData.price}
           />
         </div>
 
         <div>
-            <label className="form-label my-3" htmlFor="productCategory">
-              Product Category
-            </label>
-            <select
-              name="category"
-              className="form-control"
-              onChange={handleChange}
-              value={newProduct.category}
-            >
-              <option value="">Select a category</option>
-              {categories && categories.map((category) => (
-                <option key={category._id} value={category._id}>
-                  {category.name}
-                </option>
-              ))}
-            </select>
-          </div>
-
-
-
-        {/* <div>
           <label className="form-label my-3" htmlFor="productCategory">
             Product Category
           </label>
@@ -106,24 +91,31 @@ export default function AddProduct(props) {
             name="category"
             className="form-control"
             onChange={handleChange}
-            
+            value={productData.category}
           >
             <option value="">Select a category</option>
-           
-              <option> Electronics
-              </option>
-           
-          </select> 
-        </div> */}
+            {categories &&
+              categories.map((category) => (
+                <option key={category._id} value={category._id}>
+                  {category.name}
+                </option>
+              ))}
+          </select>
+        </div>
 
         <div>
-                    <label className="form-label my-3" for="productDescription">Product Description</label>
-                    <textarea type="text" name="description" className="form-control" onChange={handleChange} placeholder="Enter product description"/>
-                </div>
-
-
-
-
+          <label className="form-label my-3" for="productDescription">
+            Product Description
+          </label>
+          <textarea
+            type="text"
+            name="description"
+            className="form-control"
+            onChange={handleChange}
+            placeholder="Enter product description"
+            value={productData.description}
+          />
+        </div>
 
         <div>
           <label className="form-label my-3" htmlFor="productImage">
@@ -135,6 +127,7 @@ export default function AddProduct(props) {
             className="form-control"
             onChange={handleChange}
             placeholder="Add product image"
+            value={productData.image}
           />
         </div>
         <div>
@@ -147,6 +140,7 @@ export default function AddProduct(props) {
             className="form-control"
             onChange={handleChange}
             placeholder="Enter product selling unit"
+            value={productData.sellingUnit}
           />
         </div>
         <div>
@@ -159,10 +153,16 @@ export default function AddProduct(props) {
             className="form-control"
             onChange={handleChange}
             placeholder="Enter product available quantity"
+            value={productData.availableQuantity}
           />
         </div>
+
         <div>
-        <input className='btn btn-primary my-3' type="submit" value="Create Product"/>
+          <input
+            className="btn btn-primary my-3"
+            type="submit"
+            value="Edit Product"
+          />
         </div>
       </form>
     </div>
