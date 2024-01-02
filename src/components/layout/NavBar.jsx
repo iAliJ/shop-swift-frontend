@@ -22,6 +22,7 @@ export default function MainNav() {
                     </form>
 
                     <div className="text-end">
+                    <Link to='/cart' className="btn btn-outline-light me-2"><i class="bi bi-cart"></i></Link>
                     <Link to='/signin' className="btn btn-outline-light me-2">Login</Link>
                     <Link to='/signup' className="btn btn-warning">Sign-up</Link>
                     </div>

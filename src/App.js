@@ -22,6 +22,7 @@ import ProductsPage from './components/product/ProductListings';
 import ProductDetail from './components/product/ProductDetail';
 import StorePage from './components/Store/StoreListings';
 import StoreDetail from './components/Store/StoreDetail';
+import CartPage from './components/cart/Cart';
 
 
 function App() {
@@ -138,6 +139,7 @@ function App() {
           <Route path="/" element={<Home/>}/>
           <Route path="/signup" element={<Signup register={registerHandler}/>}/>
           <Route path="/signin" element={<Signin login={loginHandler}/>}/>
+          <Route path="/cart" element={<CartPage login={loginHandler} headers={getHeaders()}/>}/>
           <Route path="/products" element={<ProductsPage headers={getHeaders()}/>}/>
           <Route path="/stores" element={<StorePage/>}/>
           <Route path="/stores/:id" element={<StoreDetail/>}/>
