@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
 import Axios from 'axios';
 
-export default function EditProduct() {
+export default function EditProduct(props) {
 
     const userId = props.userData._id;
     const [productData, setProductData] = useState({user: userId})

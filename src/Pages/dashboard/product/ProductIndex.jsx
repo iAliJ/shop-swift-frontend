@@ -21,10 +21,10 @@ export default function ProductIndex(props) {
           setHasProduct(false);
         }
       })
-      .catch((err) => {
-        console.log('Error checking if user owns product');
-        console.log(err);
-      });
+      // .catch((err) => {
+      //   console.log('Error checking if user owns product');
+      //   console.log(err);
+      // });
   }
 
   return (

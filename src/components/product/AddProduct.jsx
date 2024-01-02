@@ -1,11 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import Axios from 'axios';
 
 export default function AddProduct(props) {
-  const storeId = props.store._id;
-  const [newProduct, setNewProduct] = useState({ store: storeId });
+  const userId = props.userData._id;
+  const [newProduct, setNewProduct] = useState({ user: userId });
+  const [categories, setCategories] = useState([]); // Added state for categories
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Fetch categories when the component mounts
+    fetchCategories();
+  }, []);
+
+  const fetchCategories = () => {
+    Axios.get('/category/all') // Replace with your actual endpoint to fetch categories
+      .then((response) => {
+        setCategories(response.data.categories);
+      })
+      .catch((error) => {
+        console.error('Error fetching categories:', error);
+      });
+  };
+
 
   const handleChange = (e) => {
     const product = { ...newProduct };
@@ -22,16 +39,13 @@ export default function AddProduct(props) {
 
   function addProduct(product) {
     Axios.post('/product/create', product, props.headers)
-      .then((response) => {
-        // navigate to /dashboard/stores
-        console.log(response.data.product);
-        // props.setHasStore(true);
-        navigate('/dashboard/stores');
+      .then((product) => {
+        // navigate to /dashboard/products
+        console.log(product);
+        props.setHasProduct(true);
+        navigate('/dashboard/products');
       })
-      .catch((error) => {
-        // Handle errors
-        console.error('Error adding product:', error);
-      });
+      
   }
 
   return (
@@ -62,18 +76,54 @@ export default function AddProduct(props) {
             placeholder="Enter product price"
           />
         </div>
+
         <div>
+            <label className="form-label my-3" htmlFor="productCategory">
+              Product Category
+            </label>
+            <select
+              name="category"
+              className="form-control"
+              onChange={handleChange}
+              value={newProduct.category}
+            >
+              <option value="">Select a category</option>
+              {categories.map((category) => (
+                <option key={category._id} value={category._id}>
+                  {category.name}
+                </option>
+              ))}
+            </select>
+          </div>
+
+
+        {/* <div>
           <label className="form-label my-3" htmlFor="productCategory">
             Product Category
           </label>
-          <input
-            type="text"
+          <select
             name="category"
             className="form-control"
             onChange={handleChange}
-            placeholder="Enter product category"
-          />
-        </div>
+            
+          >
+            <option value="">Select a category</option>
+           
+              <option> Electronics
+              </option>
+           
+          </select> 
+        </div> */}
+
+        <div>
+                    <label className="form-label my-3" for="productDescription">Product Description</label>
+                    <textarea type="text" name="description" className="form-control" onChange={handleChange} placeholder="Enter product description"/>
+                </div>
+
+
+
+
+
         <div>
           <label className="form-label my-3" htmlFor="productImage">
             Product Image
@@ -111,11 +161,7 @@ export default function AddProduct(props) {
           />
         </div>
         <div>
-          <input
-            className="btn btn-primary my-3"
-            type="submit"
-            value="Add Product"
-          />
+        <input className='btn btn-primary my-3' type="submit" value="Create Product"/>
         </div>
       </form>
     </div>
