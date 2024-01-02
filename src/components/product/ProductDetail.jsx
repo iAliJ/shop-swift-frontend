@@ -35,8 +35,9 @@ export default function ProductDetail(props) {
                     <div className="text-center p-4">
                       <img
                         id="main-image"
-                        src="https://i.imgur.com/Dhebu4F.jpg"
+                        src={product.image}
                         width="250"
+                        alt="Product"
                       />
                     </div>
                     <div className="thumbnail text-center">
@@ -60,21 +61,19 @@ export default function ProductDetail(props) {
                     </div>
                     <div className="mt-4 mb-3">
                       <span className="text-uppercase text-muted brand">
-                        Orianz
+                       {product.store}
                       </span>
-                      <h5 className="text-uppercase">Men's slim fit t-shirt</h5>
+                      <h5 className="text-uppercase">{product.name}</h5>
                       <div className="price d-flex flex-row align-items-center">
-                        <span className="act-price">$20</span>
-                        <div className="ml-2">
+                        <span className="act-price">{product.price}</span>
+                        {/* <div className="ml-2">
                           <small className="dis-price">$59</small>
                           <span>40% OFF</span>
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                     <p className="about">
-                      Shop from a wide range of t-shirt from orianz. Pefect for
-                      your everyday use, you could pair it with a stylish pair
-                      of jeans or trousers complete the look.
+                    {product.description}
                     </p>
 
                     <div className="cart mt-4 align-items-center">

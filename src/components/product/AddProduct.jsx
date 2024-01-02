@@ -98,7 +98,6 @@ export default function AddProduct(props) {
 
 
 
-
         {/* <div>
           <label className="form-label my-3" htmlFor="productCategory">
             Product Category
