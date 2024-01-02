@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import React, { useState, useEffect, useParams } from 'react'
 import Axios from 'axios';
 
 export default function StoreDetail() {

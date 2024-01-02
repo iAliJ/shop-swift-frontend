@@ -1,8 +1,26 @@
 import React from 'react'
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import Axios from 'axios';
 
-export default function ProductDetail(props) {
-    // A single product page. 
-    // Props will recieve product object that contains all the details
+export default function ProductDetail() {
+    const {id} = useParams();
+    const [product, setProduct] = useState({});
+
+    useEffect(() => {
+        getProduct(id);
+    }, [])
+
+    function getProduct(productId){
+        Axios.get(`/product/detail?id=${productId}`)
+        .then(res => {
+            setProduct(res.data.product);
+        })
+        .catch(err => {
+            console.log('error getting store data');
+            console.log(err);
+        })
+    }
     return (
     <>
     <div className="container mt-5 mb-5">
@@ -28,13 +46,9 @@ export default function ProductDetail(props) {
                                         </div>
                                 </div>
                                 <div className="mt-4 mb-3">
-                                    <span className="text-uppercase text-muted brand">Orianz</span>
-                                    <h5 className="text-uppercase">Men's slim fit t-shirt</h5>
+                                    <h5 className="text-uppercase">{product.name}</h5>
                                     <div className="price d-flex flex-row align-items-center">  
-                                        <span className="act-price">$20</span>
-                                        <div className="ml-2">
-                                            <small className="dis-price">$59</small><span>40% OFF</span>
-                                        </div>
+                                        <span className="act-price">BHD {product.price}</span>
                                     </div>
                                 </div>
                                 <p className="about">Shop from a wide range of t-shirt from orianz. Pefect for your everyday use, you could pair it with a stylish pair of jeans or trousers complete the look.</p>
