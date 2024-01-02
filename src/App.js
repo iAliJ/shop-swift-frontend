@@ -18,6 +18,7 @@ import SellerStorePage from './Pages/dashboard/store/StoreIndex';
 import SellerProductPage from './Pages/dashboard/product/ProductIndex';
 import Logout from './components/user/Logout';
 import ProductsPage from './components/product/ProductListings';
+import ProductDetail from './components/product/ProductDetail';
 import StorePage from './components/Store/StoreListings';
 import StoreDetail from './components/Store/StoreDetail';
 
@@ -136,6 +137,7 @@ function App() {
           <Route path="/signup" element={<Signup register={registerHandler}/>}/>
           <Route path="/signin" element={<Signin login={loginHandler}/>}/>
           <Route path="/products" element={<ProductsPage/>}/>
+          <Route path="/products/:id" element={<ProductDetail/>}/>
           <Route path="/stores" element={<StorePage/>}/>
           <Route path="/stores/:id" element={<StoreDetail/>}/>
           

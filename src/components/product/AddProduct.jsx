@@ -88,13 +88,15 @@ export default function AddProduct(props) {
               value={newProduct.category}
             >
               <option value="">Select a category</option>
-              {categories.map((category) => (
+              {categories && categories.map((category) => (
                 <option key={category._id} value={category._id}>
                   {category.name}
                 </option>
               ))}
             </select>
           </div>
+
+
 
 
         {/* <div>
