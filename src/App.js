@@ -1,5 +1,6 @@
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap";
 import { useState, useEffect } from 'react';
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import  Axios  from 'axios';
@@ -21,6 +22,7 @@ import ProductsPage from './components/product/ProductListings';
 import ProductDetail from './components/product/ProductDetail';
 import StorePage from './components/Store/StoreListings';
 import StoreDetail from './components/Store/StoreDetail';
+import ProductDetail from './components/product/ProductDetail';
 
 function App() {
   const navigate = useNavigate();
@@ -140,6 +142,7 @@ function App() {
           <Route path="/products/:id" element={<ProductDetail/>}/>
           <Route path="/stores" element={<StorePage/>}/>
           <Route path="/stores/:id" element={<StoreDetail/>}/>
+          <Route path="/products/:id" element={<ProductDetail/>}/>
           
           {/* TODO... need to send userData to the parent element only */}
           <Route path="/dashboard" element={isAuth? <Dashboard/> : <Signin login={loginHandler}/>}>

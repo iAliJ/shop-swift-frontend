@@ -4,30 +4,30 @@ import {Link} from 'react-router-dom';
 export default function (props) {
   return (
     <div>
-        <div class="vh-100 d-flex flex-column flex-shrink-0 p-3">
-            <ul class="nav nav-pills flex-column mb-auto">
-                <li class="nav-item">
-                    <Link to='profile' class="nav-link active" aria-current="page">
+        <div className="vh-100 d-flex flex-column flex-shrink-0 p-3">
+            <ul className="nav nav-pills flex-column mb-auto">
+                <li className="nav-item">
+                    <Link to='profile' className="nav-link btn-default">
                     Profile
                     </Link>
                 </li>
                 <li>
-                    <Link to='orders' class="nav-link text-white">
+                    <Link to='orders' className="nav-link text-white">
                     Orders
                     </Link>
                 </li>
                 <li>
-                    <Link to='stores' class="nav-link text-white">
+                    <Link to='stores' className="nav-link text-white">
                     Manage Stores
                     </Link>
                 </li>
                 <li>
-                    <Link to='products' class="nav-link text-white">
+                    <Link to='products' className="nav-link text-white">
                     Manage Products
                     </Link>
                 </li>
                 <li>
-                    <Link to='logout' class="nav-link text-white">
+                    <Link to='logout' className="nav-link text-white">
                     Logout
                     </Link>
                 </li>

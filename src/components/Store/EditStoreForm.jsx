@@ -6,6 +6,8 @@ export default function EditStoreForm(props) {
     const userId = props.userData._id;
     const [storeData, setStoreData] = useState({user: userId})
     const navigate = useNavigate();
+    const formData = new FormData();
+    let file = '';
 
     useEffect(() => {
         getStoreData(userId);
@@ -16,12 +18,26 @@ export default function EditStoreForm(props) {
         store[e.target.name] = e.target.value;
         setStoreData(store)
     }
+
+    const handleFileChange = (e) => {
+        e.preventDefault();
+        if(e.target.files) {
+            file = e.target.files[0];
+        }
+    }
     
     const handleUpdateStore = (e) => {
         e.preventDefault();
         const store = {...storeData};
         setStoreData(store);
-        updateStore(storeData);
+        // append all store data
+        Object.keys(storeData).forEach(key => {
+            formData.append(key, storeData[key]);
+        })
+        // formData.append('store', storeData);
+        formData.append('file', file);
+        console.log(formData);
+        updateStore();
     }
 
     function getStoreData(userId) {
@@ -31,9 +47,9 @@ export default function EditStoreForm(props) {
         })
     }
 
-    function updateStore(store) {
-        console.log(store);
-        Axios.post('/store/edit', store, props.headers)
+    function updateStore() {
+        props.headers.headers['Content-Type'] = 'multipart/form-data';
+        Axios.post('/store/edit', formData, props.headers)
         .catch((err) => {
             console.log('error updating store');
             console.log(err);
@@ -50,11 +66,11 @@ export default function EditStoreForm(props) {
                 </div>
                 <div>
                     <label className="form-label my-3" for="storeDescription">Store Description</label>
-                    <textarea type="text" name="name" className="form-control" onChange={handleChange} placeholder="Enter description for the store" value={storeData.description}/>
+                    <textarea type="text" name="description" className="form-control" onChange={handleChange} placeholder="Enter description for the store" value={storeData.description}/>
                 </div>
                 <div>
                     <label className="form-label my-3" for="storeLogo">Store Logo</label>
-                    <input type="text" name="logo" className="form-control" onChange={handleChange} placeholder="Replace this with file browser" value={storeData.logo}/>
+                    <input type="file" accept='.png,.jpg,.jpeg' name="logo" className="form-control" onChange={handleFileChange}/>
                 </div>
                 <div>
                     <label className="form-label my-3" for="storeAddress">Store Address</label>
