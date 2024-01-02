@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import {Link} from 'react-router-dom';
 
 export default function Signin(props) {
 
@@ -16,10 +17,13 @@ export default function Signin(props) {
     e.target.reset();
   }
 
+
+
   return (
     <div className='form-signup col-4 mx-auto mt-3 text-center'>
       <h1>Sign In</h1>
       <form onSubmit={loginHandler}>
+
   
         <div>
           <label>Email Address</label>
@@ -33,8 +37,17 @@ export default function Signin(props) {
 
         <div>
           <input type='submit' value='Log In' className='btn btn-primary'></input>
+          
+          <Link to='/signup' className="btn btn-primary">Register</Link>
         </div>
+
+
       </form>
+      
+     
+
     </div>
+
+
   )
 }
