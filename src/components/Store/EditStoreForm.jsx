@@ -7,6 +7,7 @@ export default function EditStoreForm(props) {
     const [storeData, setStoreData] = useState({user: userId})
     const navigate = useNavigate();
     const formData = new FormData();
+    let file = '';
 
     useEffect(() => {
         getStoreData(userId);
@@ -21,8 +22,7 @@ export default function EditStoreForm(props) {
     const handleFileChange = (e) => {
         e.preventDefault();
         if(e.target.files) {
-            const file = e.target.files[0];
-            formData.append('file', file);
+            file = e.target.files[0];
         }
     }
     
@@ -30,7 +30,13 @@ export default function EditStoreForm(props) {
         e.preventDefault();
         const store = {...storeData};
         setStoreData(store);
-        formData.append('store', JSON.stringify(storeData));
+        // append all store data
+        Object.keys(storeData).forEach(key => {
+            formData.append(key, storeData[key]);
+        })
+        // formData.append('store', storeData);
+        formData.append('file', file);
+        console.log(formData);
         updateStore();
     }
 
