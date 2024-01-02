@@ -22,7 +22,7 @@ import ProductsPage from './components/product/ProductListings';
 import ProductDetail from './components/product/ProductDetail';
 import StorePage from './components/Store/StoreListings';
 import StoreDetail from './components/Store/StoreDetail';
-import ProductDetail from './components/product/ProductDetail';
+
 
 function App() {
   const navigate = useNavigate();
