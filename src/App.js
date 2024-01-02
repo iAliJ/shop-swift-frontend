@@ -136,7 +136,7 @@ function App() {
           <Route path="/" element={<Home/>}/>
           <Route path="/signup" element={<Signup register={registerHandler}/>}/>
           <Route path="/signin" element={<Signin login={loginHandler}/>}/>
-          <Route path="/products" element={<ProductsPage/>}/>
+          <Route path="/products" element={<ProductsPage headers={getHeaders()}/>}/>
           <Route path="/stores" element={<StorePage/>}/>
           <Route path="/stores/:id" element={<StoreDetail/>}/>
           <Route path="/products/:id" element={<ProductDetail/>}/>

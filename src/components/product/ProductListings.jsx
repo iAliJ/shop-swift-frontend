@@ -20,7 +20,7 @@ export default function ProductListings(props) {
 
     const allProducts = products.map((product, index) => (
         <div key={index}>
-            <ProductCard {...product}/>
+            <ProductCard {...product} headers={props.headers}/>
         </div>
     ));
 
