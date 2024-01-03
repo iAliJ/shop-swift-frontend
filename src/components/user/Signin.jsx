@@ -17,37 +17,23 @@ export default function Signin(props) {
     e.target.reset();
   }
 
-
-
   return (
     <div className='form-signup col-4 mx-auto mt-3 text-center'>
       <h1>Sign In</h1>
       <form onSubmit={loginHandler}>
-
-  
         <div>
           <label>Email Address</label>
           <input type='email' name='emailAddress' onChange={handleChange} className='form-control'></input>
         </div>
-
         <div>
           <label>Password</label>
           <input type='password' name='password' onChange={handleChange} className='form-control'></input>
         </div>
-
         <div>
           <input type='submit' value='Log In' className='btn btn-primary'></input>
-          
-          <Link to='/signup' className="btn btn-primary">Register</Link>
         </div>
-
-
       </form>
-      
-     
-
+      <Link to='/signup' className="btn btn-primary">Register</Link>
     </div>
-
-
   )
 }
