@@ -140,7 +140,7 @@ function App() {
           <Route path="/" element={<Home/>}/>
           <Route path="/signup" element={<Signup register={registerHandler}/>}/>
           <Route path="/signin" element={<Signin login={loginHandler}/>}/>
-          <Route path="/cart" element={<CartPage login={loginHandler} headers={getHeaders()}/>}/>
+          <Route path="/cart" element={<CartPage userData={userData} login={loginHandler} headers={getHeaders()}/>}/>
           <Route path="/products" element={<ProductsPage headers={getHeaders()}/>}/>
           <Route path="/stores" element={<StorePage/>}/>
           <Route path="/stores/:id" element={<StoreDetail/>}/>
@@ -150,7 +150,7 @@ function App() {
           <Route path="/dashboard" element={isAuth? <Dashboard/> : <Signin login={loginHandler}/>}>
             <Route index element={<Profile userData={userData} headers={getHeaders()}/>} />
             <Route path="profile" element={<Profile userData={userData} headers={getHeaders()}/>} />
-            <Route path="orders" element={<OrdersPage />} />
+            <Route path="orders" element={<OrdersPage userData={userData} headers={getHeaders()}/>} />
             <Route path="stores" element={<SellerStorePage userData={userData} headers={getHeaders()}/>} />
             <Route path="products" element={<SellerProductPage userData={userData} headers={getHeaders()}/>} />
             <Route path='logout' element={<Logout logout={logoutHandler}/>}/>

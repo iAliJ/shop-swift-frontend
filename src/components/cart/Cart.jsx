@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Axios from 'axios';
 
+
 export default function Cart(props) {
+    const navigate = useNavigate();
     const [cartItems, setCartItems] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
+    const [cartData, setCartData] = useState({});
     
     useEffect(() => {
         getCartItems();
@@ -14,6 +17,7 @@ export default function Cart(props) {
     function getCartData() {
         Axios.get(`/cart/detail`, props.headers)
         .then(res => {
+            setCartData(res.data.cart);
             setTotalPrice(res.data.cart.totalPrice)
         })
     }
@@ -30,6 +34,18 @@ export default function Cart(props) {
         })
     }
 
+    const checkout = (e) => {
+        e.preventDefault();
+        console.log('checking out ' + cartData._id)
+        Axios.get(`/order/create?cart=${cartData._id}`, props.headers)
+        .then((cart) => {
+            // empty cart
+            // redirect to orders page
+            console.log(cart);
+            navigate('/dashboard/orders');
+        })
+    }
+
     function deleteCartItem(id) {
         console.log('deleting item ' + id);
         Axios.get(`/cartitem/delete?id=${id}`, props.headers)
@@ -41,6 +57,7 @@ export default function Cart(props) {
 
     const allCartItems = cartItems.map((item, index) => (
         <div key={index}>
+            {console.log(cartItems)}
             <div className="cart-item d-md-flex justify-content-between"><span className="remove-item"><i onClick={() => deleteCartItem(item._id)} className="bi bi-trash"></i></span>
                     <div className="px-3 my-3">
                         <a className="cart-item-product" href="#">
@@ -76,7 +93,7 @@ export default function Cart(props) {
     </div>
     <hr className="my-2"/>
     <div className="row pt-3 pb-5 mb-2">
-        <div className="col-sm-6 mb-3"><a className="btn btn-style-1 btn-primary btn-block" href="checkout-address.html"><i className="fe-icon-credit-card"></i>&nbsp;Checkout</a></div>
+        <div className="col-sm-6 mb-3"><div className="btn btn-style-1 btn-primary btn-block" onClick={checkout}><i class="bi bi-credit-card"></i> Checkout</div></div>
     </div>
     </div>
         </div>
