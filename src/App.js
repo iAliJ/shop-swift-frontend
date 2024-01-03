@@ -85,6 +85,7 @@ function App() {
    */
   const loginHandler = async (cred) => {
     try{
+      console.log(cred);
       const res = await Axios.post('/auth/signin', cred);
       let token = res.data.token;
       if(token != null){

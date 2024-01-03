@@ -21,15 +21,22 @@ export default function Cart(props) {
         })
     }
 
+    function deleteCartItem(id) {
+        console.log('deleting item ' + id);
+        Axios.get(`/cartitem/delete?id=${id}`, props.headers)
+        .then(() => {
+            getCartItems();
+        })
+    }
+
     const allCartItems = cartItems.map((item, index) => (
         <div key={index}>
-            <div className="cart-item d-md-flex justify-content-between"><span className="remove-item"><i className="bi bi-trash"></i></span>
+            <div className="cart-item d-md-flex justify-content-between"><span className="remove-item"><i onClick={() => deleteCartItem(item._id)} className="bi bi-trash"></i></span>
                     <div className="px-3 my-3">
                         <a className="cart-item-product" href="#">
                             <div className="cart-item-product-thumb"><img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Product"/></div>
                             <div className="cart-item-product-info">
                                 <h4 className="cart-item-product-title">{item.product.name}</h4>
-                                {/* <span><strong>Type:</strong> Mirrorless</span><span><strong>Color:</strong> Black</span> */}
                             </div>
                         </a>
                     </div>
