@@ -4,13 +4,15 @@ import Axios from 'axios';
 
 export default function AddProduct(props) {
   const userId = props.userData._id;
-  const [newProduct, setNewProduct] = useState({ user: userId });
+  // const storeId = props.userData.store;
+  const [newProduct, setNewProduct] = useState({  user: userId });
   const [categories, setCategories] = useState([]); // Added state for categories
   const navigate = useNavigate();
 
   useEffect(() => {
     // Fetch categories when the component mounts
     fetchCategories();
+    getStoreId();
   }, []);
 
   const fetchCategories = () => {
@@ -23,17 +25,31 @@ export default function AddProduct(props) {
       });
   };
 
+  const getStoreId = () =>{
+    Axios.get(`/user/store?user=${props.userData._id}`) // Replace with your actual endpoint to fetch categories
+    .then((response) => {
+      console.log('getting store id: ', response.data.store._id);
+      const newPro = {...newProduct, store:response.data.store._id}
+      setNewProduct(newPro)
+      // setStoreId(response.data.store._id)
+      // setCategories(response.data.categories);
+    })
+    .catch((error) => {
+      console.error('Error fetching categories:', error);
+    });
+  }
 
   const handleChange = (e) => {
     const product = { ...newProduct };
     product[e.target.name] = e.target.value;
     setNewProduct(product);
+    
   };
 
   const handleAddProduct = (e) => {
     e.preventDefault();
-    const product = { ...newProduct };
-    setNewProduct(product);
+    // // const product = { ...newProduct, store: storeI };
+    // setNewProduct(newProduct);
     addProduct(newProduct);
   };
 
@@ -42,7 +58,7 @@ export default function AddProduct(props) {
       .then((product) => {
         // navigate to /dashboard/products
         console.log(product);
-        props.setHasProduct(true);
+        // props.setHasProduct(true);
         navigate('/dashboard/products');
       })
       
@@ -95,7 +111,6 @@ export default function AddProduct(props) {
               ))}
             </select>
           </div>
-
 
 
         {/* <div>
