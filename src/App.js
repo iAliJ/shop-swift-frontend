@@ -148,7 +148,7 @@ function App() {
           <Route path="/cart" element={<CartPage userData={userData} login={loginHandler} headers={getHeaders()}/>}/>
           <Route path="/products" element={<ProductsPage headers={getHeaders()}/>}/>
           <Route path="/stores" element={<StorePage userData={userData} headers={getHeaders()}/>}/>
-          <Route path="/stores/:id" element={<StoreDetail/>}/>
+          <Route path="/stores/:id" element={<StoreDetail userData={userData} headers={getHeaders()}/>}/>
           <Route path="/products/:id" element={<ProductDetail userData={userData} headers={getHeaders()}/>}/>
           
           {/* TODO... need to send userData to the parent element only */}

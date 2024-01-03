@@ -34,9 +34,23 @@ export default function Cart(props) {
         })
     }
 
+    function createOrderItems(item) {
+        // for each cart item create order item
+        Axios.post('/orderitem/create', {
+            "user": props.userData._id,
+            "quantity": item.quantity,
+            "product": item.product,
+            "store": item.product.store
+        }, props.headers);
+    }
+
     const checkout = (e) => {
         e.preventDefault();
         console.log('checking out ' + cartData._id)
+        cartItems.forEach((item) => {
+            createOrderItems(item);
+        })
+
         Axios.get(`/order/create?cart=${cartData._id}`, props.headers)
         .then((cart) => {
             // empty cart
