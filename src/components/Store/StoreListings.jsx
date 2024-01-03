@@ -22,7 +22,7 @@ export default function StoreListings(props) {
 
     const allStores = stores.map((store, index) => (
         <div key={index}>
-            <StoreCard {...store}/>
+            <StoreCard {...store} headers={props.headers}/>
         </div>
     ));
 

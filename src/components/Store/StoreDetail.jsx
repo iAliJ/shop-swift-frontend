@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import Axios from 'axios';
+import ProductCard from '../product/ProductCard';
 
-export default function StoreDetail() {
+export default function StoreDetail(props) {
     const {id} = useParams();
     const [store, setStore] = useState({});
+    const [products, setProducts] = useState([]);
 
     useEffect(() => {
         getStore(id);
+        getAllStoreProducts();
     }, [])
 
     function getStore(storeId){
@@ -21,6 +24,23 @@ export default function StoreDetail() {
         })
     }
 
+    function getAllStoreProducts() {
+        Axios.get(`/product/bystore?id=${id}`)
+        .then(res => {
+            setProducts(res.data.products);
+        })
+        .catch(err => {
+            console.log('Error reading product data');
+            console.log(err);
+        });
+    }
+
+    const allProducts = products.map((product, index) => (
+        <div key={index}>
+            <ProductCard {...product} headers={props.headers}/>
+        </div>
+    ));
+
     // A single product page. 
     // Props will recieve product object that contains all the details
     return (
@@ -33,11 +53,7 @@ export default function StoreDetail() {
                         <div className="col-md-6">
                             <div className="images p-3">
                                 <div className="text-center p-4">
-                                    <img id="main-image" src="https://i.imgur.com/Dhebu4F.jpg" width="250" />
-                                </div>
-                                <div className="thumbnail text-center">
-                                    <img onClick="change_image(this)" src="https://i.imgur.com/Rx7uKd0.jpg" width="70"/>
-                                    <img onClick="change_image(this)" src="https://i.imgur.com/Dhebu4F.jpg" width="70"/>
+                                    <img id="main-image" src={store.logo} width="250" />
                                 </div>
                             </div>
                         </div>
@@ -49,22 +65,16 @@ export default function StoreDetail() {
                                 </div>
                                 <div className="mt-4 mb-3">
                                     <h4 className="text-uppercase">{store.name}</h4>
-                                    <div className="price d-flex flex-row align-items-center">  
-                                        <span className="act-price">$20</span>
-                                        <div className="ml-2">
-                                            <small className="dis-price">$59</small><span>40% OFF</span>
-                                        </div>
-                                    </div>
                                 </div>
-                                <p className="about">Shop from a wide range of t-shirt from orianz. Pefect for your everyday use, you could pair it with a stylish pair of jeans or trousers complete the look.</p>
-                                
-                                <div className="cart mt-4 align-items-center">
-                                    <button className="btn btn-danger text-uppercase mr-2 px-4">Add to cart</button>
-                                </div>
+                                <p className="about">{store.description}</p>
                             </div>
                         </div>
                     </div>
                 </div>
+                <h2 className='mt-5 text-center'>List of our products</h2>
+            <div className='row row-cols-md-4 row-cols-sm-2 g-3 mt-4'>
+                {allProducts}
+            </div>
             </div>
         </div>
     </div>

@@ -9,7 +9,6 @@ export default function ProductCard(props) {
     const handleChange = (e) => {
         e.preventDefault();
         setQuantity(e.target.value);
-        
     }
 
     const addToCart = () => {

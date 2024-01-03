@@ -1,15 +1,33 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import Axios from 'axios';
 
 export default function ProductDetail(props) {
 
     const {id} = useParams();
     const [product, setProduct] = useState({});
+    const [quantity, setQuantity] = useState(1);
+
+    const handleChange = (e) => {
+        e.preventDefault();
+        setQuantity(e.target.value);
+    }
 
     useEffect(() => {
         getProduct(id);
     }, [])
+
+    const addToCart = () => {
+      console.log(id)
+      Axios.get(`/cartitem/update?id=${id}&qnt=${quantity}`, props.headers)
+      .then(() => {
+          console.log(`Item ${props._id} added to cart`);
+      })
+      .catch((err) => {
+          console.log('Error adding item to cart');
+          console.log(err);
+      })
+  }
 
     function getProduct(productId){
         Axios.get(`/product/detail?id=${productId}`)
@@ -39,19 +57,7 @@ export default function ProductDetail(props) {
                         width="250"
                         alt="Product"
                       />
-                    </div>
-                    <div className="thumbnail text-center">
-                      <img
-                        onClick="change_image(this)"
-                        src="https://i.imgur.com/Rx7uKd0.jpg"
-                        width="70"
-                      />
-                      <img
-                        onClick="change_image(this)"
-                        src="https://i.imgur.com/Dhebu4F.jpg"
-                        width="70"
-                      />
-                    </div>
+                    </div>                    
                   </div>
                 </div>
                 <div className="col-md-6">
@@ -60,12 +66,9 @@ export default function ProductDetail(props) {
                       <div className="d-flex align-items-center"></div>
                     </div>
                     <div className="mt-4 mb-3">
-                      <span className="text-uppercase text-muted brand">
-                       {product.store}
-                      </span>
                       <h5 className="text-uppercase">{product.name}</h5>
                       <div className="price d-flex flex-row align-items-center">
-                        <span className="act-price">{product.price}</span>
+                        <h3 className="act-price">BHD {product.price}</h3>
                         {/* <div className="ml-2">
                           <small className="dis-price">$59</small>
                           <span>40% OFF</span>
@@ -77,9 +80,8 @@ export default function ProductDetail(props) {
                     </p>
 
                     <div className="cart mt-4 align-items-center">
-                      <button className="btn btn-danger text-uppercase mr-2 px-4">
-                        Add to cart
-                      </button>
+                    <Link onClick={addToCart}  class="btn btn-primary my-2">Add to Cart</Link>
+                    <input type='number' min='1' name='qnt' onChange={handleChange} value={quantity}/>
                     </div>
                   </div>
                 </div>
