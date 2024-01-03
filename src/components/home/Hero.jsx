@@ -13,10 +13,10 @@ export default function Hero() {
     height: 700,
     width: 1500,}}>
     
-  <div className="mask" style={{backgroundcolor: `rgba(0, 0, 0, 0.6)`}}>
+  <div className="mask" style={{backgroundcolor: `rgba(0, 0, 0, 0.6)`, margin: 400 }}>
     <div className="d-flex justify-content-center align-items-center h-100">
       <div className="text-white">
-        <h1 className="mb-3">Welcome to Average Wholsale App</h1>
+        <h1 className="mb-3">Welcome to Wholsale App</h1>
         <a className="btn btn-outline-light btn-lg mt" href="#!" role="button" style={{position: 'center',}}>Browse Products</a>
       </div>
     </div>
