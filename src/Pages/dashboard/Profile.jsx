@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Axios from 'axios';
 
 export default function Profile(props) {
     const [user, setUser] = useState(props.userData);
-
-    useEffect(() => {
-        console.log(user._id);
-        getUser(user._id);
-    }, [])
     
+    useEffect(() => {
+        setUser(props.userData);
+    }, [props])
+
     const handleChange = (e) => {
         e.preventDefault();
         const newUser = {...user};
@@ -16,10 +15,13 @@ export default function Profile(props) {
         setUser(newUser);
     }
 
-    function getUser(id) {
-        Axios.get(`/user/detail?id=${id}`, props.headers)
-        .then(userData => {
-            setUser(userData);
+    const updateProfile = (e) => {
+        e.preventDefault();
+        console.log('update ....')
+        Axios.post(`/user/update`, user, props.headers)
+        .then(res => {
+            console.log(res.data.user)
+            setUser(res.data.user);
         })
     }
 
@@ -27,7 +29,7 @@ export default function Profile(props) {
         <div>
             <h1>
                 Welcome back {props.userData.firstName} {props.userData.lastName}!
-                <form onSubmit={() => {}}>
+                <form onSubmit={updateProfile}>
                     <div>
                         <label className="form-label my-3" for="firstName">First Name</label>
                         <input type="text" name="firstName" className="form-control" onChange={handleChange} value={user.firstName}/>
