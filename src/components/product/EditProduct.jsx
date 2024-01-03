@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Axios from "axios";
 
 export default function EditProduct(props) {
+  const {id} = useParams();
   const userId = props.userData._id;
   const [productData, setProductData] = useState({ user: userId });
   const [categories, setCategories] = useState([]); // Added state for categories
@@ -37,8 +38,8 @@ export default function EditProduct(props) {
     updateProduct(productData);
   };
 
-  function getProductData(userId) {
-    Axios.get(`/user/product?user=${userId}`).then((res) => {
+  function getProductData() {
+    Axios.get(`/product/detail?id=${id}`).then((res) => {
       setProductData(res.data.product);
     });
   }

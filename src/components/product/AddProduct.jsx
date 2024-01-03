@@ -4,7 +4,9 @@ import Axios from 'axios';
 
 export default function AddProduct(props) {
   const userId = props.userData._id;
-  const [newProduct, setNewProduct] = useState({ user: userId });
+  const storeId = props.userData.store;
+  console.log(storeId)
+  const [newProduct, setNewProduct] = useState({  user: userId, store: storeId });
   const [categories, setCategories] = useState([]); // Added state for categories
   const navigate = useNavigate();
 
@@ -32,7 +34,7 @@ export default function AddProduct(props) {
 
   const handleAddProduct = (e) => {
     e.preventDefault();
-    const product = { ...newProduct };
+    const product = { ...newProduct, store: storeId };
     setNewProduct(product);
     addProduct(newProduct);
   };
@@ -42,7 +44,7 @@ export default function AddProduct(props) {
       .then((product) => {
         // navigate to /dashboard/products
         console.log(product);
-        props.setHasProduct(true);
+        // props.setHasProduct(true);
         navigate('/dashboard/products');
       })
       
@@ -95,7 +97,6 @@ export default function AddProduct(props) {
               ))}
             </select>
           </div>
-
 
 
         {/* <div>

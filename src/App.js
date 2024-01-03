@@ -22,6 +22,8 @@ import ProductsPage from './components/product/ProductListings';
 import ProductDetail from './components/product/ProductDetail';
 import StorePage from './components/Store/StoreListings';
 import StoreDetail from './components/Store/StoreDetail';
+import EditProduct from './components/product/EditProduct';
+import AddProduct from './components/product/AddProduct';
 
 
 function App() {
@@ -149,7 +151,11 @@ function App() {
             <Route path="profile" element={<Profile userData={userData}/>} />
             <Route path="orders" element={<OrdersPage />} />
             <Route path="stores" element={<SellerStorePage userData={userData} headers={getHeaders()}/>} />
-            <Route path="products" element={<SellerProductPage userData={userData} headers={getHeaders()}/>} />
+            <Route path="products" element={<SellerProductPage userData={userData} headers={getHeaders()}/>}>
+              <Route path="edit/:id" element={<EditProduct userData={userData} headers={getHeaders()}/>}/>
+              <Route path="add" element={<AddProduct userData={userData} headers={getHeaders()}/>} />
+            </Route>
+           
             <Route path='logout' element={<Logout logout={logoutHandler}/>}/>
           </Route>
           <Route path="*" element={<Error/>}/>
