@@ -133,11 +133,14 @@ function App() {
     return token;
   }
 
+
+
+
   return (
     <>
     <div className='bg-dark text-light'>
       <div className='container bg-dark'>
-        <NavBar></NavBar>
+        <NavBar isAuth={isAuth}></NavBar>
         <Routes>
           <Route path="/" element={<Home/>}/>
           <Route path="/signup" element={<Signup register={registerHandler}/>}/>
@@ -165,6 +168,11 @@ function App() {
         </Routes>
         </div>
       </div>
+
+
+
+
+      
     </>
   );
 }
