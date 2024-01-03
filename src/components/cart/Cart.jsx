@@ -57,7 +57,6 @@ export default function Cart(props) {
 
     const allCartItems = cartItems.map((item, index) => (
         <div key={index}>
-            {console.log(cartItems)}
             <div className="cart-item d-md-flex justify-content-between"><span className="remove-item"><i onClick={() => deleteCartItem(item._id)} className="bi bi-trash"></i></span>
                     <div className="px-3 my-3">
                         <a className="cart-item-product" href="#">

@@ -6,6 +6,8 @@ export default function EditProduct(props) {
   const {id} = useParams();
   const userId = props.userData._id;
   const [productData, setProductData] = useState({ user: userId });
+  const formData = new FormData();
+  let file = '';
   const [categories, setCategories] = useState([]); // Added state for categories
   const navigate = useNavigate();
 
@@ -35,8 +37,19 @@ export default function EditProduct(props) {
     e.preventDefault();
     const product = { ...productData };
     setProductData(product);
-    updateProduct(productData);
+    Object.keys(productData).forEach(key => {
+      formData.append(key, productData[key]);
+  })
+    formData.append('file', file);
+    updateProduct();
   };
+
+  const handleFileChange = (e) => {
+    e.preventDefault();
+    if(e.target.files) {
+        file = e.target.files[0];
+    }
+  }
 
   function getProductData() {
     Axios.get(`/product/detail?id=${id}`).then((res) => {
@@ -44,9 +57,10 @@ export default function EditProduct(props) {
     });
   }
 
-  function updateProduct(product) {
-    console.log(product);
-    Axios.post("/product/edit", product, props.headers).catch((err) => {
+  function updateProduct() {
+    console.log(formData);
+    props.headers.headers['Content-Type'] = 'multipart/form-data';
+    Axios.post("/product/edit", formData, props.headers).catch((err) => {
       console.log("error updating product");
       console.log(err);
     });
@@ -122,14 +136,7 @@ export default function EditProduct(props) {
           <label className="form-label my-3" htmlFor="productImage">
             Product Image
           </label>
-          <input
-            type="text"
-            name="image"
-            className="form-control"
-            onChange={handleChange}
-            placeholder="Add product image"
-            value={productData.image}
-          />
+          <input type="file" accept='.png,.jpg,.jpeg' name="logo" className="form-control" onChange={handleFileChange}/>
         </div>
         <div>
           <label className="form-label my-3" htmlFor="productSellingUnit">

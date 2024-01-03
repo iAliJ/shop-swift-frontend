@@ -28,7 +28,6 @@ export default function MainNav(props) {
                     <li><Link to="/" className="nav-link px-2 text-secondary">Home</Link></li>
                     <li><Link to="/stores" className="nav-link px-2 text-white">Stores</Link></li>
                     <li><Link to="/products" className="nav-link px-2 text-white">Products</Link></li>
-                    <li><Link to="/faq" className="nav-link px-2 text-white">FAQs</Link></li>
                     <li><Link to="/dashboard" className="nav-link px-2 text-white">Dashboard</Link></li>
                     </ul>
 
@@ -39,10 +38,17 @@ export default function MainNav(props) {
                     {/* if user signedin hide */}
 
                     <div className="text-end">
-                    <Link to='/cart' className="btn btn-outline-light me-2"><i class="bi bi-cart"></i></Link>
-                    <Link to='/signin' className="btn btn-outline-light me-2">Login</Link>
-                    <Link to='/signup' className="btn btn-warning">Sign-up</Link>
-                        {props.isAuth ? <Link to='dashboard/logout' className="btn btn-outline-light me-2">Logout</Link> : <div><Link to='/signup' className="btn btn-warning">Sign-up</Link> <Link to='/signin' className="btn btn-outline-light me-2">Login</Link></div>}
+                        {props.isAuth ? 
+                        <div>
+                            <Link to='/cart' className="btn btn-outline-light me-2"><i class="bi bi-cart"></i></Link>
+                            <Link to='dashboard/logout' className="btn btn-outline-light me-2">Logout</Link>
+                        </div> 
+                        : 
+                        <div>
+                            <Link to='/signup' className="btn btn-warning">Sign-up</Link>
+                            <Link to='/signin' className="btn btn-outline-light me-2">Login</Link>
+                        </div>
+                            }
 
                      {/* if user is logging then show */}
 
