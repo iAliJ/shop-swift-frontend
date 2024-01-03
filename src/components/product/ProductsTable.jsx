@@ -1,43 +1,3 @@
-// import React from 'react'
-
-// export default function 
-// () {
-//   return (
-//     <div>
-//         <table class="table">
-//   <thead>
-//     <tr>
-//       <th scope="col">#</th>
-//       <th scope="col">Product Name</th>
-//       <th scope="col">Category</th>
-//       <th scope="col">Available Quantity</th>
-//     </tr>
-//   </thead>
-//   <tbody>
-//     <tr>
-//       <th scope="row">1</th>
-//       <td>Mark</td>
-//       <td>Otto</td>
-//       <td>@mdo</td>
-//     </tr>
-//     <tr>
-//       <th scope="row">2</th>
-//       <td>Jacob</td>
-//       <td>Thornton</td>
-//       <td>@fat</td>
-//     </tr>
-//     <tr>
-//       <th scope="row">3</th>
-//       <td colspan="2">Larry the Bird</td>
-//       <td>@twitter</td>
-//     </tr>
-//   </tbody>
-// </table>
-//     </div>
-//   )
-// }
-
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
@@ -52,7 +12,7 @@ export default function UserProductsTable(props) {
     Axios.get(`/user/product?user=${props.userData._id}`)
       .then((res) => {
         
-        console.log(res.data);
+        console.log("res",res.data);
         setUserProducts(res.data.product);
       })
       .catch((err) => {
@@ -60,7 +20,6 @@ export default function UserProductsTable(props) {
       });
   };
 
-  
 
   const handleEdit = (productId) => {
     const selectedProduct = userProducts.find((product) => product._id === productId);
@@ -68,15 +27,19 @@ export default function UserProductsTable(props) {
   };
 
   const handleDelete = (productId) => {
-    Axios.delete(`/product/delete/${productId}`)
+    Axios.get(`/product/delete?id=${productId}`)
       .then((res) => {
         console.log(`Product with ID ${productId} deleted successfully`);
-        getUserProducts(); // Refresh the product list after deletion
+        // Update the state after deletion
+        setUserProducts((prevProducts) =>
+          prevProducts.filter((product) => product._id !== productId)
+        );
       })
       .catch((err) => {
         console.error(`Error deleting product with ID ${productId}:`, err);
       });
   };
+  
   return (
     <div>
       <table className="table">
@@ -90,7 +53,7 @@ export default function UserProductsTable(props) {
           </tr>
         </thead>
         <tbody>
-          {userProducts.map((product, index) => (
+          {userProducts && userProducts.map((product, index) => (
             <tr key={product._id}>
               <th scope="row">{index + 1}</th>
               <td>{product.name}</td>

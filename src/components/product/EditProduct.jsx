@@ -12,7 +12,7 @@ export default function EditProduct(props) {
   useEffect(() => {
     getProductData(userId);
     fetchCategories();
-  }, []);
+  }, [id]);
 
   const fetchCategories = () => {
     Axios.get("/category/all") // Replace with your actual endpoint to fetch categories
