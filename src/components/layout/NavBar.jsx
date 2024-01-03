@@ -1,7 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {Link} from 'react-router-dom';
 
-export default function MainNav() {
+export default function MainNav(props) {
+
+
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  
+    const login = () => {
+        setIsLoggedIn(true);
+  };
+
+
+    const logout = () => {
+        setIsLoggedIn(false);
+  };
+
+
     return (
         <header className="p-3 text-bg-dark">
             <div className="container">
@@ -21,9 +36,21 @@ export default function MainNav() {
                     <input type="search" className="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search"/>
                     </form>
 
+                    {/* if user signedin hide */}
+
                     <div className="text-end">
-                    <Link to='/signin' className="btn btn-outline-light me-2">Login</Link>
-                    <Link to='/signup' className="btn btn-warning">Sign-up</Link>
+
+                        {props.isAuth ? <Link to='dashboard/logout' className="btn btn-outline-light me-2">Logout</Link> : <div><Link to='/signup' className="btn btn-warning">Sign-up</Link> <Link to='/signin' className="btn btn-outline-light me-2">Login</Link></div>}
+
+                     {/* if user is logging then show */}
+
+                    
+                    
+
+                   
+
+                    
+                                 
                     </div>
                 </div>
             </div>
