@@ -59,7 +59,7 @@ export default function EditProduct(props) {
 
   function updateProduct() {
     console.log(formData);
-    props.headers.headers['Content-Type'] = 'multipart/form-data';
+    // props.headers.headers['Content-Type'] = 'multipart/form-data';
     Axios.post("/product/edit", formData, props.headers).catch((err) => {
       console.log("error updating product");
       console.log(err);

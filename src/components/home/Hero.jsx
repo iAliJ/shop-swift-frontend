@@ -11,7 +11,7 @@ export default function Hero() {
 <div className="p-5 text-center bg-image rounded-3" style={{backgroundImage: "url(" + "https://i.imgur.com/fuqTtqF.png" + ")",
 
     height: 700,
-    width: 1500,}}>
+    width: 1350,}}>
     
   <div className="mask" style={{backgroundcolor: `rgba(0, 0, 0, 0.6)`, margin: 400 }}>
     <div className="d-flex justify-content-center align-items-center h-100">
