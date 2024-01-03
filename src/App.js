@@ -22,6 +22,7 @@ import ProductsPage from './components/product/ProductListings';
 import ProductDetail from './components/product/ProductDetail';
 import StorePage from './components/Store/StoreListings';
 import StoreDetail from './components/Store/StoreDetail';
+import CartPage from './components/cart/Cart';
 
 
 function App() {
@@ -84,6 +85,7 @@ function App() {
    */
   const loginHandler = async (cred) => {
     try{
+      console.log(cred);
       const res = await Axios.post('/auth/signin', cred);
       let token = res.data.token;
       if(token != null){
@@ -141,6 +143,7 @@ function App() {
           <Route path="/" element={<Home/>}/>
           <Route path="/signup" element={<Signup register={registerHandler}/>}/>
           <Route path="/signin" element={<Signin login={loginHandler}/>}/>
+          <Route path="/cart" element={<CartPage userData={userData} login={loginHandler} headers={getHeaders()}/>}/>
           <Route path="/products" element={<ProductsPage headers={getHeaders()}/>}/>
           <Route path="/stores" element={<StorePage/>}/>
           <Route path="/stores/:id" element={<StoreDetail/>}/>
@@ -148,9 +151,9 @@ function App() {
           
           {/* TODO... need to send userData to the parent element only */}
           <Route path="/dashboard" element={isAuth? <Dashboard/> : <Signin login={loginHandler}/>}>
-            <Route index element={<Profile userData={userData}/>} />
-            <Route path="profile" element={<Profile userData={userData}/>} />
-            <Route path="orders" element={<OrdersPage />} />
+            <Route index element={<Profile userData={userData} headers={getHeaders()}/>} />
+            <Route path="profile" element={<Profile userData={userData} headers={getHeaders()}/>} />
+            <Route path="orders" element={<OrdersPage userData={userData} headers={getHeaders()}/>} />
             <Route path="stores" element={<SellerStorePage userData={userData} headers={getHeaders()}/>} />
             <Route path="products" element={<SellerProductPage userData={userData} headers={getHeaders()}/>} />
             <Route path='logout' element={<Logout logout={logoutHandler}/>}/>

@@ -30,7 +30,8 @@ export default function ProductCard(props) {
             <img src='...' className='card-img-top'/>
             <div class="card-body">
             <h5 class="card-title">{props.name}</h5>
-            <p class="card-text">Product description goes here in this paragraph tag.</p>
+            <p class="card-text">{props.description}</p>
+            <h3 class="card-text">BHD {props.price}</h3>
             <Link to={`/products/${props._id}`} class="btn btn-primary">Product Details</Link><br/>
             <div>
                 <Link onClick={addToCart}  class="btn btn-primary my-2">Add to Cart</Link>

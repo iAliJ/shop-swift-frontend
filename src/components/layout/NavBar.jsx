@@ -44,13 +44,7 @@ export default function MainNav(props) {
 
                      {/* if user is logging then show */}
 
-                    
-                    
 
-                   
-
-                    
-                                 
                     </div>
                 </div>
             </div>
