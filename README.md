@@ -32,6 +32,14 @@ The backend consists of:
   - REACT 
   - JWT-decode
 
+
 ## Screenshots
 
-## Trello
+### Website Screenshots
+
+![Alt text](<Public/images/Screenshot 2024-01-04 at 6.42.23 AM.png>)
+
+![Alt text](<Public/images/Screenshot 2024-01-04 at 6.43.05 AM.png>)
+
+### Trello Tasks
+![Alt text](<Public/images/Screenshot 2024-01-04 at 6.45.48 AM.png>)
