@@ -26,7 +26,7 @@ export default function ProductCard(props) {
 
     return (
         <div className='card'>
-            <img src={props.image} className='card-img-top'/>
+            <img src={props.image} className='card-img-top' style={{height: 200, width:200}}/>
             <div class="card-body">
             <h5 class="card-title">{props.name}</h5>
             <p class="card-text">{props.description}</p>

@@ -63,8 +63,8 @@ export default function SellerOrder(props) {
   const [orders, setOrders] = useState([]);
   const [store, setStore] = useState({});  
   useEffect(() => {
-    getOrders();
-  }, [props])
+    getStore();
+  }, [])
 
   function getOrders() {
     Axios.get(`/order/user?id=${props.userData._id}`, props.headers)
@@ -73,10 +73,11 @@ export default function SellerOrder(props) {
     })
   }
 
-  function getStore() {
+    const getStore = () => {
     Axios.get(`/user/store?user=${props.userData._id}`, props.headers)
     .then(res => {
         setStore(res.data.store);
+        getOrders();
     })
   }
 
