@@ -1,10 +1,8 @@
-
 # E-Commerce wholsale App Frontend 
 
-Wholsale team
 ## Overview
 
-The Shop Swift is an e-commerce  platform for multiple products for shops or companies to show their products for the customers online. 
+The Shop Swift is an e-commerce platform for whole sales of products, where seller can post their shops and products to buyer. The app is powered by MERN stack.
 
 ## ERD: 
 ![ERD](https://github.com/iAliJ/shop-swift-backend/assets/47180374/81e48a28-2fc2-4b77-9fca-fa58f345c1bd)
@@ -12,7 +10,6 @@ The Shop Swift is an e-commerce  platform for multiple products for shops or com
 ## Trello User Stories
 
 https://trello.com/invite/b/UtTfIwLI/ATTIf59d66b3dac62e0f4170e2a008c980e8E2D7E8B2/wholesale-app
-
 
 ## Platform Map: 
 
@@ -26,10 +23,19 @@ The backend consists of:
 
 ## Features
 
-- Responsive site
-- Store 
-- products 
-- CRUD operations 
+### Current features
+
+* Responsive site
+* Store management for sellers
+* products management for sellers
+* search feature for products
+* cart management for buyers
+
+### Planned features
+
+* Fix tracked bugs
+* Improve search results page
+* show more details on product / store details page
 
 ## Project Requirements
 
