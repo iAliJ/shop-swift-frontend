@@ -33,18 +33,19 @@ The backend consists of:
 
 ## Project Requirements
 
-- Technology used: 
-  - REACT 
-  - JWT-decode
+Install dependencies `npm i` and modify `package.json` by pointing to the backend proxy `"proxy": "http://localhost:4001"`
 
+Dependencies used:
+* axios
+* react-bootstrap
+* jwt-decode
+* react
+* react-router-dom
 
 ## Screenshots
 
 ### Website Screenshots
 
-![Alt text](<Public/images/Screenshot 2024-01-04 at 6.42.23 AM.png>)
+<img width="1511" alt="front page" src="https://github.com/iAliJ/shop-swift-frontend/assets/47180374/289d3492-ee10-4428-85ae-b571fcd02e80">
 
-![Alt text](<Public/images/Screenshot 2024-01-04 at 6.43.05 AM.png>)
-
-### Trello Tasks
-![Alt text](<Public/images/Screenshot 2024-01-04 at 6.45.48 AM.png>)
+<img width="1551" alt="dashboard" src="https://github.com/iAliJ/shop-swift-frontend/assets/47180374/149b50e0-e4c3-4a14-aac7-eef9c4c0f6e6">
