@@ -25,6 +25,8 @@ import StoreDetail from './components/Store/StoreDetail';
 import EditProduct from './components/product/EditProduct';
 import AddProduct from './components/product/AddProduct';
 import CartPage from './components/cart/Cart';
+import Search from './components/layout/Search';
+import SearchResults from './components/product/SearchResults';
 
 
 function App() {
@@ -143,6 +145,7 @@ function App() {
         <NavBar isAuth={isAuth}></NavBar>
         <Routes>
           <Route path="/" element={<Home/>}/>
+          <Route path="/search" element={<SearchResults />} />
           <Route path="/signup" element={<Signup register={registerHandler}/>}/>
           <Route path="/signin" element={<Signin login={loginHandler}/>}/>
           <Route path="/cart" element={<CartPage userData={userData} login={loginHandler} headers={getHeaders()}/>}/>
