@@ -3,7 +3,7 @@ import Axios from 'axios';
 
 export default function Profile(props) {
     const [user, setUser] = useState(props.userData);
-    
+    console.log(props)
     useEffect(() => {
         setUser(props.userData);
     }, [props])

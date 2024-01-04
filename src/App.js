@@ -60,6 +60,10 @@ function App() {
     }
   }, []);
 
+  useEffect(() => {
+    console.log('userData in App:', userData);
+  }, [userData])
+
   /**
    * A function that calls API to register a user in the database
    * @param {The use to be registered} user 
@@ -114,14 +118,14 @@ function App() {
    * @param {userId} userId 
    */
   const getUserData = async (userId) => {
-    try{
       const header = getHeaders();
-      const res = await Axios.get(`/user/detail?id=${userId}`, getHeaders());
-      setUserData(res.data.user);
-    }
-    catch(err){
+      Axios.get(`/user/detail?id=${userId}`, getHeaders())
+      .then(res => {
+        setUserData(res.data.user)
+      })
+      .catch(err =>{
       console.log(err);
-    }
+    })
   }
 
   // TODO... Move these into helper modules
