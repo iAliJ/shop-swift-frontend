@@ -9,6 +9,11 @@ The Shop Swift is an e-commerce  platform for multiple products for shops or com
 ## ERD: 
 ![ERD](https://github.com/iAliJ/shop-swift-backend/assets/47180374/81e48a28-2fc2-4b77-9fca-fa58f345c1bd)
 
+## Trello User Stories
+
+https://trello.com/invite/b/UtTfIwLI/ATTIf59d66b3dac62e0f4170e2a008c980e8E2D7E8B2/wholesale-app
+
+
 ## Platform Map: 
 
 The team used REACT technology for the frontend of the e-commerce wholsale app
