@@ -21,7 +21,7 @@ export default function StoreListings(props) {
     }
 
     const allStores = stores.map((store, index) => (
-        <div key={index}>
+        <div className="mb-5" key={index}>
             <StoreCard {...store} headers={props.headers}/>
         </div>
     ));

@@ -1,6 +1,7 @@
-import React from 'react'
-import StoreListings from '../Store/StoreListings'
-import ProductListings from '../product/ProductListings'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import StoreListings from '../Store/StoreListings';
+import ProductListings from '../product/ProductListings';
 
 export default function Hero() {
   return (
@@ -17,14 +18,15 @@ export default function Hero() {
     <div className="d-flex justify-content-center align-items-center h-100">
       <div className="text-white">
         <h1 className="mb-3">Welcome to Wholsale App</h1>
-        <a className="btn btn-outline-light btn-lg mt" href="#!" role="button" style={{position: 'center',}}>Browse Products</a>
+        <Link className="btn btn-outline-light btn-lg mt" to='/products' role="button" style={{position: 'center',}}>Browse Products</Link>
       </div>
     </div>
   </div>
 </div>
 
-
+<h2 className='text-center mt-5'>Stores Listing</h2>
 <StoreListings/>
+<h2 className='text-center mt-5'>Products Listing</h2>
 <ProductListings/>
 
    
