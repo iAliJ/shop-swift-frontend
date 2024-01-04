@@ -36,7 +36,7 @@ export default function StoreDetail(props) {
     }
 
     const allProducts = products.map((product, index) => (
-        <div key={index}>
+        <div className='mb-5' key={index}>
             <ProductCard {...product} headers={props.headers}/>
         </div>
     ));
