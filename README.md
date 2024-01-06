@@ -11,16 +11,6 @@ The Shop Swift is an e-commerce platform for whole sales of products, where sell
 
 https://trello.com/invite/b/UtTfIwLI/ATTIf59d66b3dac62e0f4170e2a008c980e8E2D7E8B2/wholesale-app
 
-## Platform Map: 
-
-The team used REACT technology for the frontend of the e-commerce wholsale app
-
-The backend consists of: 
-
-- Product
-- Store 
-- User
-
 ## Features
 
 ### Current features
