@@ -42,6 +42,10 @@ Dependencies used:
 
 ### Website Screenshots
 
-<img width="1511" alt="front page" src="https://github.com/iAliJ/shop-swift-frontend/assets/47180374/289d3492-ee10-4428-85ae-b571fcd02e80">
+![image](https://github.com/iAliJ/shop-swift-frontend/assets/47180374/baa0d654-0bb9-49e2-9784-8a96524faa22)
 
-<img width="1551" alt="dashboard" src="https://github.com/iAliJ/shop-swift-frontend/assets/47180374/149b50e0-e4c3-4a14-aac7-eef9c4c0f6e6">
+![image](https://github.com/iAliJ/shop-swift-frontend/assets/47180374/cb067455-f063-42b4-acb9-3e1dfc2e1bb1)
+
+![image](https://github.com/iAliJ/shop-swift-frontend/assets/47180374/cf75247a-05af-40ea-bd3f-db319102a89e)
+
+
