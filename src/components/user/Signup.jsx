@@ -56,7 +56,7 @@ export default function Signup(props) {
         </div>
         <div>
           <label>User Role</label>
-          <select name="userRole"  onChange={handleSelectChange} className='form-control'>
+          <select name="role"  onChange={handleSelectChange} className='form-control'>
             <option value="">Select Role</option>
             <option value="buyer">buyer</option>
             <option value="seller">seller</option>

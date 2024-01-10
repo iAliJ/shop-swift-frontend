@@ -76,6 +76,7 @@ export default function SellerOrder(props) {
     const getStore = () => {
     Axios.get(`/user/store?user=${props.userData._id}`, props.headers)
     .then(res => {
+      console.log('store -------',res.data);
         setStore(res.data.store);
         getOrders();
     })
@@ -92,7 +93,7 @@ export default function SellerOrder(props) {
   return (
     <div>
       <h1>Orders inside dashboard</h1>
-        <p>{store._id}</p>
+        <p>{store&& store._id}</p>
       <table class="table">
         <thead>
           <th scope='col'>Order ID</th>
