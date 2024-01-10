@@ -7,7 +7,7 @@ export default function (props) {
         <div className="vh-100 d-flex flex-column flex-shrink-0 p-3">
             <ul className="nav nav-pills flex-column mb-auto">
                 <li className="nav-item">
-                    <Link to='profile' className="nav-link btn-default">
+                    <Link to='profile' className="nav-link text-white">
                     Profile
                     </Link>
                 </li>

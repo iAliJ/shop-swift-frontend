@@ -67,7 +67,7 @@ export default function MainNav(props) {
                 <Link to="/signup" className="btn btn-warning">
                   Sign-up
                 </Link>
-                <Link to="/signin" className="btn btn-outline-light me-2">
+                <Link to="/signin" className="mx-2 btn btn-outline-light me-2">
                   Login
                 </Link>
               </div>

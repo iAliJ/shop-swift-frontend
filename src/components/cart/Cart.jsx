@@ -87,10 +87,10 @@ export default function Cart(props) {
                         </div>
                     </div>
                     <div className="px-3 my-3 text-center">
-                        <div className="cart-item-label">Subtotal</div><span className="text-xl font-weight-medium">BHD {item.price}</span>
+                        <div className="cart-item-label text-dark">Subtotal</div><span className="text-xl font-weight-medium text-dark">BHD {item.price}</span>
                     </div>
                     <div className="px-3 my-3 text-center">
-                        <div className="cart-item-label">Discount</div><span className="text-xl font-weight-medium">0</span>
+                        <div className="cart-item-label text-dark">Discount</div><span className="text-xl font-weight-medium text-dark">0</span>
                     </div>
                 </div>
         </div>

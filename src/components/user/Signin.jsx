@@ -33,7 +33,7 @@ export default function Signin(props) {
           <input type='submit' value='Log In' className='btn btn-primary'></input>
         </div>
       </form>
-      <Link to='/signup' className="btn btn-primary">Register</Link>
+      <Link to='/signup' className="mt-3 btn btn-primary">Register</Link>
     </div>
   )
 }
